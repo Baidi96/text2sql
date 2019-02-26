@@ -3,6 +3,8 @@ import torch
 from sqlnet.utils import *
 import numpy as np
 import datetime
+#import mxnet as mx
+#from bert_embedding import BertEmbedding
 
 LOCAL_TEST=False
 
@@ -21,8 +23,10 @@ sql_data, table_data, val_sql_data, val_table_data,\
         load_dataset(0, use_small=USE_SMALL)
 word_emb = load_word_emb('glove/glove.%dB.%dd.txt'%(B_word,N_word),
         use_small=USE_SMALL)
-print "Length of word vocabulary: %d"%len(word_emb)
-
+#ctx = mx.gpu(0)
+#bert = BertEmbedding(ctx=ctx)
+print("Length of word vocabulary: {}".format(len(word_emb)))
+print(np.array(word_emb).shape)
 word_to_idx = {'<UNK>':0, '<BEG>':1, '<END>':2}
 word_num = 3
 embs = [np.zeros(N_word,dtype=np.float32) for _ in range(word_num)]
@@ -57,9 +61,11 @@ for tab in test_table_data.values():
         for tok in col:
             check_and_add(tok)
 
-print "Length of used word vocab: %s"%len(word_to_idx)
+print("Length of used word vocab: {}".format(len(word_to_idx)))
 
+print(np.array(embs).shape)
 emb_array = np.stack(embs, axis=0)
 with open('glove/word2idx.json', 'w') as outf:
     json.dump(word_to_idx, outf)
-np.save(open('glove/usedwordemb.npy', 'w'), emb_array)
+np.save(open('glove/usedwordemb.npy', 'wb'), emb_array)
+"""import json
