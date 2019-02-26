@@ -4,18 +4,18 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
-from net_utils import run_lstm
+from sqlnet.model.modules.net_utils import run_lstm
 
 class Seq2SQLCondPredictor(nn.Module):
     def __init__(self, N_word, N_h, N_depth, max_col_num, max_tok_num, gpu):
         super(Seq2SQLCondPredictor, self).__init__()
-        print "Seq2SQL where prediction"
+        print("Seq2SQL where prediction")
         self.N_h = N_h
         self.max_tok_num = max_tok_num
         self.max_col_num = max_col_num
         self.gpu = gpu
 
-        self.cond_lstm = nn.LSTM(input_size=N_word, hidden_size=N_h/2,
+        self.cond_lstm = nn.LSTM(input_size=N_word, hidden_size=int(N_h/2),
                 num_layers=N_depth, batch_first=True,
                 dropout=0.3, bidirectional=True)
         self.cond_decoder = nn.LSTM(input_size=self.max_tok_num,
