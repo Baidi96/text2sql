@@ -52,26 +52,25 @@ if __name__ == '__main__':
 
     if args.train_emb:
         agg_m, sel_m, cond_m, agg_e, sel_e, cond_e = best_model_name(args)
-        print("Loading from {}".format(agg_m
-        model.agg_pred.load_state_dict(torch.load(agg_m))))
-        print("Loading from {}".format(sel_m
-        model.sel_pred.load_state_dict(torch.load(sel_m))))
-        print("Loading from {}".format(cond_m
-        model.cond_pred.load_state_dict(torch.load(cond_m))))
-        print("Loading from {}".format(agg_e
-        model.agg_embed_layer.load_state_dict(torch.load(agg_e)))
-        print("Loading from {}".format(sel_e
-        model.sel_embed_layer.load_state_dict(torch.load(sel_e))))
-        print("Loading from {}".format(cond_e
-        model.cond_embed_layer.load_state_dict(torch.load(cond_e))))
+        print("Loading from {}".format(agg_m model.agg_pred.load_state_dict(torch.load(agg_m))))
+        print("Loading from {}".format(sel_m))
+        model.sel_pred.load_state_dict(torch.load(sel_m))
+        print("Loading from {}".format(cond_m))
+        model.cond_pred.load_state_dict(torch.load(cond_m))
+        print("Loading from {}".format(agg_e))
+        model.agg_embed_layer.load_state_dict(torch.load(agg_e))
+        print("Loading from {}".format(sel_e))
+        model.sel_embed_layer.load_state_dict(torch.load(sel_e))
+        print("Loading from {}".format(cond_e))
+        model.cond_embed_layer.load_state_dict(torch.load(cond_e))
     else:
         agg_m, sel_m, cond_m = best_model_name(args)
-        print("Loading from {}".format(agg_m
-        model.agg_pred.load_state_dict(torch.load(agg_m))))
-        print("Loading from {}".format(sel_m
-        model.sel_pred.load_state_dict(torch.load(sel_m))))
-        print("Loading from {}".format(cond_m
-        model.cond_pred.load_state_dict(torch.load(cond_m))))
+        print("Loading from {}".format(agg_m))
+        model.agg_pred.load_state_dict(torch.load(agg_m))
+        print("Loading from {}".format(sel_m))
+        model.sel_pred.load_state_dict(torch.load(sel_m))
+        print("Loading from {}".format(cond_m))
+        model.cond_pred.load_state_dict(torch.load(cond_m))
 
     print("Dev acc_qm: ;\n  breakdown on (agg, sel, where): {}".format(epoch_acc(
             model, BATCH_SIZE, val_sql_data, val_table_data, TEST_ENTRY)))
