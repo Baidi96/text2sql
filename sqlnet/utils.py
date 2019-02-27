@@ -282,7 +282,7 @@ def load_word_emb(file_name, load_used=False, use_small=False):
         print('Load used word embedding')
         with open('glove/word2idx.json') as inf:
             w2i = json.load(inf)
-        with open('glove/usedwordemb.npy') as inf:
+        with open('glove/usedwordemb.npy', 'rb') as inf:
             word_emb_val = np.load(inf)
         return w2i, word_emb_val
 
