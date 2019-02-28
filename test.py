@@ -75,9 +75,9 @@ if __name__ == '__main__':
 
     print("Dev acc_qm: ;\n  breakdown on (agg, sel, where): {}".format(epoch_acc(
             model, BATCH_SIZE, val_sql_data, val_table_data, TEST_ENTRY)))
-    print("Dev execution acc: {}".format(epoch_exec_acc(
-            model, BATCH_SIZE, val_sql_data, val_table_data, DEV_DB)))
+    #print("Dev execution acc: {}".format(epoch_exec_acc(
+    #        model, BATCH_SIZE, val_sql_data, val_table_data, DEV_DB)))
     print("Test acc_qm: ;\n  breakdown on (agg, sel, where): {}".format(epoch_acc(
             model, BATCH_SIZE, test_sql_data, test_table_data, TEST_ENTRY)))
-    print("Test execution acc: {}".format(epoch_exec_acc(
-            model, BATCH_SIZE, test_sql_data, test_table_data, TEST_DB)))
+    #print("Test execution acc: {}".format(epoch_exec_acc(
+    #        model, BATCH_SIZE, test_sql_data, test_table_data, TEST_DB)))
