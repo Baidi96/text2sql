@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     if args.train_emb:
         agg_m, sel_m, cond_m, agg_e, sel_e, cond_e = best_model_name(args)
-        print("Loading from {}".format(agg_m)
+        print("Loading from {}".format(agg_m))
         model.agg_pred.load_state_dict(torch.load(agg_m))
         print("Loading from {}".format(sel_m))
         model.sel_pred.load_state_dict(torch.load(sel_m))
