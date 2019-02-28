@@ -68,4 +68,4 @@ emb_array = np.stack(embs, axis=0)
 with open('glove/word2idx.json', 'w') as outf:
     json.dump(word_to_idx, outf)
 np.save(open('glove/usedwordemb.npy', 'wb'), emb_array)
-"""import json
+
