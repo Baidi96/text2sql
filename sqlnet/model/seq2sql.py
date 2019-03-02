@@ -147,7 +147,7 @@ class Seq2SQL(nn.Module):
         loss = 0
         if pred_agg:
             agg_truth = map(lambda x:x[0], truth_num)
-            data = torch.from_numpy(np.array(agg_truth))
+            data = torch.from_numpy(np.array(list(agg_truth)))
             if self.gpu:
                 agg_truth_var = Variable(data.cuda())
             else:
@@ -157,7 +157,7 @@ class Seq2SQL(nn.Module):
 
         if pred_sel:
             sel_truth = map(lambda x:x[1], truth_num)
-            data = torch.from_numpy(np.array(sel_truth))
+            data = torch.from_numpy(np.array(list(sel_truth)))
             if self.gpu:
                 sel_truth_var = Variable(data).cuda()
             else:
@@ -210,7 +210,7 @@ class Seq2SQL(nn.Module):
             for cond in conds:
                 cond_str.append(
                     header[cond[0]] + ' ' + self.COND_OPS[cond[1]] + \
-                    ' ' + unicode(cond[2]).lower())
+                    ' ' + str(cond[2]).lower())
             return 'WHERE ' + ' AND '.join(cond_str)
 
         pred_agg, pred_sel, pred_cond = pred_entry
@@ -261,8 +261,8 @@ class Seq2SQL(nn.Module):
                     if not flag:
                         break
                     gt_idx = tuple(x[0] for x in cond_gt).index(cond_pred[idx][0])
-                    if flag and unicode(cond_gt[gt_idx][2]).lower() != \
-                       unicode(cond_pred[idx][2]).lower():
+                    if flag and str(cond_gt[gt_idx][2]).lower() != \
+                       str(cond_pred[idx][2]).lower():
                         flag = False
                         cond_val_err += 1
 
