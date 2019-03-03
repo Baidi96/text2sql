@@ -1,0 +1,5 @@
+SELECT   count       position       WHERE   player   EQL   1
+SELECT   count       position       WHERE   player   EQL   1
+SELECT   count       position       WHERE   player   EQL   1
+SELECT   count       position       WHERE   position   EQL   1
+SELECT   count       position       WHERE   position   EQL   1

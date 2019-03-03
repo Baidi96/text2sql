@@ -1,0 +1,5 @@
+SELECT   nationality   WHERE   player   EQL   terrence   ross
+SELECT   school/club   team   WHERE   years   in   toronto   EQL   1995-96
+SELECT   school/club   team   WHERE   years   in   toronto   EQL   2003-06
+SELECT   count       school club   team       WHERE   player   EQL   jalen   rose
+SELECT   count       position       WHERE   position   EQL   1
