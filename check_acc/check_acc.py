@@ -17,7 +17,7 @@ def check_acc(file_gt, file_pred):
 			else:
 				pos = len(line_split)
 			select = line_split[line_split.index('SELECT') + 1:pos]
-			if select[0] in ['max', 'min', 'count', 'sum', 'avg']:
+			if len(select) > 0 and select[0] in ['max', 'min', 'count', 'sum', 'avg']:
 				parse_dict['agg'] = select[0]
 				select = select[1:]
 			else:
@@ -60,25 +60,38 @@ def check_acc(file_gt, file_pred):
 		print("Different line number!\n")
 		return
 	tot_err = 0
-	for line_p, line_g in zip(lines_p, lines_g):
+	for i, (line_p, line_g) in enumerate(zip(lines_p, lines_g)):
+		print("=========================")
+		print(line_g)
+		print(line_p)
 		flag_p, dict_p = parse_line(line_p)
 		flag_g, dict_g = parse_line(line_g)
-		print(line_p)
-		#print(flag_p, dict_p)
-		print(line_g)
-		#print(flag_g, dict_g)
+		print(flag_p, dict_p)
+		print(flag_g, dict_g)
 		if flag_p == False or flag_g == False:
 			tot_err += 1
+			print("{}: Fail!".format(i))
 			continue
 
 		if dict_p['sel'] != dict_g['sel'] or dict_p['agg'] != dict_g['agg']:
 			tot_err += 1
+			print("{}: Fail!".format(i))
 			continue
 
 		cond_p = dict_p['cond']
 		cond_g = dict_g['cond']
+		if cond_p is None and cond_g is None:
+			print("{}: Succeed!".format(i))
+			continue
+		
+		if cond_p is None or cond_g is None:
+			tot_err += 1
+			print("{}: Fail!".format(i))
+			continue
+
 		if set(x[0] for x in cond_p) != set(x[0] for x in cond_g):
 			tot_err += 1
+			print("{}: Fail!".format(i))
 			continue
 
 		flag = True
@@ -89,7 +102,9 @@ def check_acc(file_gt, file_pred):
 				break
 		if not flag:
 			tot_err += 1
+			print("{}: Fail!".format(i))
 			continue
+		print("{}: Succeed!".format(i))
 	print(tot_err)
 	return tot_err
 

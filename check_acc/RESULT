@@ -15876,4 +15876,3 @@ SELECT   chassis   WHERE   points   EQL   39
 SELECT   points   WHERE   event   EQL   ford   v8   AND   position   EQL   ford   v8
 SELECT   chassis   WHERE   year   LT   1976   AND   points   EQL   12
 SELECT   year   WHERE   entrant   EQL   elf   team   tyrol   AND   points   EQL   39
-
