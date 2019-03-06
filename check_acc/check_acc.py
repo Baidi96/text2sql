@@ -42,7 +42,7 @@ def check_acc(file_gt, file_pred):
 				elif 'LT' in cond_t:
 					pos_t = cond_t.index('LT')
 				if pos_t is None:
-					flag = false
+					flag = False
 				else:
 					cond.append([' '.join(cond_t[0:pos_t]), cond_t[pos_t], ' '.join(cond_t[pos_t + 1:])])
 				startpos = endpos + 1
