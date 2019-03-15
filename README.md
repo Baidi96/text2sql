@@ -1,5 +1,6 @@
 # SQLNet
 
+Here is the Python 3 version of SQLNet.
 This repo provides an implementation of SQLNet and Seq2SQL neural networks for predicting SQL queries on [WikiSQL dataset](https://github.com/salesforce/WikiSQL). The paper is available at [here](https://arxiv.org/abs/1711.04436).
 
 ## Citation
